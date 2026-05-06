@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Células IEQ Comaze</title>
+  <meta name="description" content="Células IEQ Comaze. Encontre uma célula perto de você e viva comunhão, fé e crescimento espiritual." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-2: #0b1b30;
+      --primary: #f5c542;
+      --primary-2: #ffda6b;
+      --text: #ffffff;
+      --muted: #cbd5e1;
+      --green: #22c55e;
+      --radius: 24px;
+      --shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(245,197,66,.22), transparent 32%),
+        radial-gradient(circle at top right, rgba(56,189,248,.18), transparent 28%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(0, 0, 0, .92);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      font-size: 1.2rem;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), #fff3b0);
+      color: #08111f;
+      box-shadow: 0 10px 30px rgba(245,197,66,.24);
+      font-weight: 900;
+      font-size: 1.8rem;
+      animation: floatLogo 3s ease-in-out infinite;
+      transition: all .25s ease;
+    }
+
+    @keyframes floatLogo {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    .brand-mark:hover {
+      transform: translateY(-6px) scale(1.08) rotate(-2deg);
+      box-shadow: 0 18px 50px rgba(245,197,66,.45);
+      filter: brightness(1.08);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: .95rem;
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: transparent;
+      border: 0;
+      color: var(--muted);
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 10px 0;
+    }
+
+    .dropdown-toggle:hover,
+    .nav-dropdown:hover .dropdown-toggle {
+      color: var(--primary);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      min-width: 245px;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, .96);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: .22s ease;
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: #fff;
+      font-weight: 800;
+      font-size: .92rem;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(245,197,66,.14);
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      cursor: pointer;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: .22s ease;
+      min-height: 48px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #08111f;
+      box-shadow: 0 14px 40px rgba(245,197,66,.22);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.04); }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.22);
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+    }
+
+    .btn-outline:hover { background: rgba(255,255,255,.12); transform: translateY(-2px); }
+
+    .hero { padding: 86px 0 56px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(245,197,66,.12);
+      border: 1px solid rgba(245,197,66,.28);
+      color: #ffe796;
+      font-weight: 800;
+      font-size: .88rem;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.45rem, 6vw, 5.5rem);
+      line-height: .94;
+      letter-spacing: -.075em;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span { color: var(--primary); display: block; }
+
+    .hero p {
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      line-height: 1.65;
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 620px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 3px;
+    }
+
+    .stat small { color: var(--muted); font-weight: 600; }
+
+    .phone-card {
+      border-radius: 36px;
+      padding: 18px;
+      background: linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: var(--shadow);
+      transform: rotate(1.2deg);
+    }
+
+    .phone-screen {
+      min-height: 560px;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(7,17,31,.35), rgba(7,17,31,.88)),
+        url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80') center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 26px;
+    }
+
+    .phone-badge {
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(34,197,94,.18);
+      border: 1px solid rgba(34,197,94,.28);
+      color: #bbf7d0;
+      font-weight: 800;
+      font-size: .83rem;
+      margin-bottom: 14px;
+    }
+
+    .phone-screen h2 {
+      font-size: 2.1rem;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .phone-screen p {
+      font-size: 1rem;
+      line-height: 1.55;
+      color: #e2e8f0;
+      margin: 0;
+    }
+
+    section { padding: 70px 0; }
+
+    .section-title {
+      text-align: center;
+      max-width: 880px;
+      margin: 0 auto 38px;
+    }
+
+    .section-title .eyebrow {
+      color: var(--primary);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .78rem;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.05;
+      letter-spacing: -.055em;
+      margin-bottom: 18px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 46px;
+    }
+
+    .category-card {
+      min-height: 150px;
+      padding: 24px;
+      border-radius: 26px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .25s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      background: rgba(245,197,66,.14);
+      border-color: rgba(245,197,66,.36);
+    }
+
+    .category-card span {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .category-card strong {
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    .cell-group {
+      margin-top: 34px;
+      scroll-margin-top: 100px;
+    }
+
+    .cell-group-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      font-size: clamp(1.45rem, 3vw, 2.1rem);
+      letter-spacing: -.04em;
+    }
+
+    .cell-group-title span {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #08111f;
+      font-size: 1.4rem;
+    }
+
+    .cell-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .cell-card {
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(8,17,31,.18);
+      background: linear-gradient(180deg, #ffd886, #ffc85e);
+      color: #08111f;
+      box-shadow: 0 22px 60px rgba(0,0,0,.22);
+      transition: .25s ease;
+    }
+
+    .cell-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 80px rgba(0,0,0,.30);
+    }
+
+    .cell-photo {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid rgba(8,17,31,.12);
+    }
+
+    .cell-content { padding: 20px; text-align: center; }
+
+    .cell-tag {
+      width: fit-content;
+      margin: 0 auto 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(8,17,31,.10);
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .cell-card h3 {
+      font-size: 1.28rem;
+      line-height: 1.18;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: -.02em;
+    }
+
+    .cell-info {
+      color: #08111f;
+      font-size: 1rem;
+      line-height: 1.75;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: min(100%, 190px);
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #000;
+      color: #fff;
+      font-weight: 900;
+      font-size: .88rem;
+      text-decoration: underline;
+      transition: .22s ease;
+    }
+
+    .whatsapp-btn:hover { transform: scale(1.04); background: #111; }
+
+    .whatsapp-icon {
+      width: 26px;
+      height: 26px;
+      display: inline-block;
+    }
+
+    .whatsapp-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      fill: #25D366;
+    }
+
+    footer {
+      padding: 34px 0;
+      color: #94a3b8;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 920px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 54px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .phone-card { transform: none; max-width: 520px; margin: 0 auto; }
+      .category-grid { grid-template-columns: 1fr 1fr; }
+      .cell-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .container { width: min(100% - 24px, 1120px); }
+      .nav { min-height: 68px; }
+      .brand span { font-size: 1rem; }
+      .brand-mark { width: 44px; height: 44px; font-size: 1.55rem; }
+      .hero-actions .btn { width: 100%; }
+      .hero-stats, .category-grid, .cell-grid { grid-template-columns: 1fr; }
+      .phone-screen { min-height: 430px; padding: 22px; }
+      section { padding: 54px 0; }
+      .cell-photo { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand" aria-label="Células IEQ Comaze">
+        <div class="brand-mark">🏠</div>
+        <span>Células IEQ Comaze</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+
+        <div class="nav-dropdown">
+          <button class="dropdown-toggle" type="button">Células ▾</button>
+          <div class="dropdown-menu">
+            <a href="#kids-teens">Kids e Teens</a>
+            <a href="#adolescentes-jovens">Adolescentes e Jovens</a>
+            <a href="#mulheres">Mulheres</a>
+            <a href="#homens">Homens</a>
+          </div>
+        </div>
+
+        <a href="#igreja">Igreja</a>
+      </nav>
+
+      <a class="btn btn-primary" href="https://forms.gle/LjHwbZrFzPeJqJdC6">Participar</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill">✨ Você não nasceu para caminhar sozinho</div>
+          <h1>Encontre sua <span>célula</span></h1>
+          <p>
+            "E todos os dias, no templo e de casa em casa, continuavam a ensinar e anunciar que Jesus é o Cristo." (Atos 5:42)
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#categorias">Participar</a>
+            <a class="btn btn-outline" href="#sobre">Conhecer melhor</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat"><strong>+</strong><small>Comunhão</small></div>
+            <div class="stat"><strong>+</strong><small>Família</small></div>
+            <div class="stat"><strong>+</strong><small>Palavra</small></div>
+          </div>
+        </div>
+
+        <div class="phone-card" aria-label="Imagem de grupo em célula">
+          <div class="phone-screen">
+            <div class="phone-badge">Toda semana</div>
+            <h2>Uma casa aberta, uma família em Cristo.</h2>
+            <p>Você não precisa caminhar sozinho! Nossas células são para pertencer, crescer e se conectar! Venha fazer parte!</p>
+          </div>
+        </div>
+              </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">O que são células?</div>
+          <h2>Pequenos grupos, grandes encontros com Deus.</h2>
+          <p>A nossa igreja segue um modelo de comunhão e crescimento inspirado nas células!</p>
+          <p>Assim como os cristãos da igreja primitiva, também nos reunimos semanalmente nas casas para juntos louvarmos a Deus, aprendermos mais sobre a Sua Palavra e buscarmos Sua presença em oração. As células são pequenos grupos nos quais cultivamos relacionamentos mais próximos e criamos laços verdadeiros. É um ambiente acolhedor onde desfrutamos de tempo de qualidade e comunhão sincera.</p>
+          <p>Esse formato fortalece a nossa caminhada com Deus e aproxima os irmãos, promovendo a edificação e a unidade do corpo de Cristo.</p>
+          <p>Elas acontecem de Quarta a Sábado, ao redor da cidade de Quatro Barras, Colombo e Campina Grande do Sul, e atendem diferentes públicos: Kids, adolescentes, jovens, mulheres e homens. Procure a célula que mais se encaixa em seu perfil e faça uma visita! Você pode encontrar a célula mais próxima de você consultando a lista abaixo.</p>
+          <p>Esperamos por você!</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="celulas">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">Células</div>
+          <h2>Escolha a célula que mais combina com você.</h2>
+          <p>Veja abaixo as informações das células e fale direto com o líder pelo WhatsApp.</p>
+        </div>
+
+        <div id="categorias" class="category-grid">
+          <a class="category-card" href="#kids-teens">
+            <span>🧒</span>
+            <strong>Células de Kids e Teens</strong>
+          </a>
+
+          <a class="category-card" href="#adolescentes-jovens">
+            <span>🙌</span>
+            <strong>Células de Adolescentes e Jovens</strong>
+          </a>
+
+          <a class="category-card" href="#mulheres">
+            <span>🌷</span>
+            <strong>Células de Mulheres</strong>
+          </a>
+
+          <a class="category-card" href="#homens">
+            <span>🛡️</span>
+            <strong>Células de Homens</strong>
+          </a>
+        </div>
+
+        <div id="kids-teens" class="cell-group">
+          <h3 class="cell-group-title">Células de Kids e Teens</h3>
+          <div class="cell-grid">
+            <article class="cell-card">
+              <img class="cell-photo" src="kids.webp" alt="Foto da célula Kids">
+              <div class="cell-content">
+                <div class="cell-tag">Kids</div>
+                <h3>Célula Crianças de 5 a 9 anos</h3>
+                <p class="cell-info">
+                  Quarta-feira - 19h<br><br>
+                  Bairro: Colônia Maria José<br>
+                  Quatro Barras/PR<br><br>
+                  Líder: Alessandra
+                </p>
+                <a class="whatsapp-btn" href="kids.webp" target="_blank" rel="noopener">
+                  <span class="whatsapp-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/>
+                  </svg>
+                </span> Saiba mais
+                </a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="teens giRls.webp" alt="Foto da célula Teens Girls">
+              <div class="cell-content">
+                <div class="cell-tag">Teens Girls</div>
+                <h3>meninas 10 a 13 anos</h3>
+                <p class="cell-info">
+                  Quarta-feira - 19h<br><br>
+                  Bairro: Colônia Maria José<br>
+                  Quatro Barras/PR<br><br>
+                  Líder: Francieli
+                </p>
+                <a class="whatsapp-btn" href="https://wa.me/41988297266" target="_blank" rel="noopener">
+                  <span class="whatsapp-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/>
+                  </svg>
+                </span> Saiba mais
+                </a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="Teens Girls 1.webp" alt="Foto da célula Teens Girls 1">
+              <div class="cell-content">
+                <div class="cell-tag">Teens Girls 1</div>
+                <h3>meninas 10 a 13 anos</h3>
+                <p class="cell-info">
+                  quarta-feira - 20h<br><br>
+                  Bairro: Colônia Maria José<br>
+                  Quatro Barras/PR<br><br>
+                  Líder: Julia
+                </p>
+                <a class="whatsapp-btn" href="https://wa.me/41996424538" target="_blank" rel="noopener">
+                  <span class="whatsapp-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/>
+                  </svg>
+                </span> Saiba mais
+                </a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="teens giRls 2.webp" alt="Foto da célula teens giRls 2">
+              <div class="cell-content">
+                <div class="cell-tag">teens giRls 2</div>
+                <h3>meninas 13 a 15 anos</h3>
+                <p class="cell-info">
+                  Quarta-feira 19h<br><br>
+                  Bairro: Colônia Maria José<br>
+                  Quatro Barras/PR<br><br>
+                  Líder: Tatiane
+                </p>
+                <a class="whatsapp-btn" href="https://wa.me/41997874313" target="_blank" rel="noopener">
+                  <span class="whatsapp-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/>
+                  </svg>
+                </span> Saiba mais
+                </a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="teens Boys .webp" alt="Foto da célula Teens Boys">
+              <div class="cell-content">
+                <div class="cell-tag">Teens Boys</div>
+                <h3>meninos 11 a 15 anos</h3>
+                <p class="cell-info">
+                  sexta-feira - 20h<br>
+                  Bairro: Colônia Maria José<br><br>
+                  Quatro Barras/PR<br><br>
+                  Líder: Nome do líder
+                </p>
+                <a class="whatsapp-btn" href="https://wa.me/41999505023" target="_blank" rel="noopener">
+                  <span class="whatsapp-icon" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/>
+                  </svg>
+                </span> Saiba mais
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        
+        <div id="adolescentes-jovens" class="cell-group">
+          <h3 class="cell-group-title">Células de Adolescentes e Jovens</h3>
+          <div class="cell-grid">
+
+            <article class="cell-card">
+              <img class="cell-photo" src="Chosen-giRls-.webp">
+              <div class="cell-content">
+                <div class="cell-tag">Chosen Girls</div>
+                <h3>meninas 15 a 18 anos</h3>
+                <p class="cell-info">quarta-feira - 19h30<br><br>Bairros: Nossa senhora das graças, Jardim menino Deus e Jardim Paulista<br><br> Quatro Barras e CGS<br>Líder:Evelyn</p>
+                <a class="whatsapp-btn" href="https://wa.me/41998913632" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="Wake Up Girls.webp">
+              <div class="cell-content">
+                <div class="cell-tag">Wake Up Girls</div>
+                <h3>Jovens 18 + </h3>
+                <p class="cell-info">quinta-feira - 20h<br><br>Bairros: Jardim São Pedro e Nossa Senhora das Graças<br>Quatro Barras e CGS<br><br>Líder: PRA.Beatriz</p>
+                <a class="whatsapp-btn" href="https://wa.me/41992365143" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="hope.webp">
+              <div class="cell-content">
+                <div class="cell-tag">Hope</div>
+                <h3>meninas 18 +</h3>
+                <p class="cell-info">quinta-feira 20h<br><br>Jardim São Pedro<br>Campina grande do sul/PR<br><br>Líder: Ana Paula</p>
+                <a class="whatsapp-btn" href="https://wa.me/41995246471" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="Gileade.webp">
+              <div class="cell-content">
+                <div class="cell-tag">Gileade</div>
+                <h3>meninos de 11 a 15 anos</h3>
+                <p class="cell-info">quarta-feira - 19h30<br><br>Bairro: Colônia Maria José<br>Quatro Barras/PR<br><br>Líder: Gabriel</p>
+                <a class="whatsapp-btn" href="https://wa.me/41998913632" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="wake boys.webp">
+              <div class="cell-content">
+                <div class="cell-tag">Wake Boys</div>
+                <h3>jovens 18 + </h3>
+                <p class="cell-info">quarta-feira - 20h<br><br>Bairro: Jardim Menino Deus<br>Quatro Barras/PR<br><br>Líder:Daniel</p>
+                <a class="whatsapp-btn" href="https://wa.me/41992365143" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="jp.webp">
+              <div class="cell-content">
+                <div class="cell-tag">JP</div>
+                <h3>jovens 15 a 24 anos</h3>
+                <p class="cell-info">quinta-feira - 20h<br><br>Bairros: Jardim Paulista e Jardim Menino Deus<br>Quatro Barras e CGS<br><br>Líder</p>
+                <a class="whatsapp-btn" href="https://wa.me/5541984903956" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="qb.webp">
+              <div class="cell-content">
+                <div class="cell-tag">QB</div>
+                <h3>jovens 15 a 24 anos</h3>
+                <p class="cell-info">quinta-feira 20h<br><br>Bairros: São Pedro, Colônia Maria José e jardim Patrícia <br>Quatro Barras/PR<br><br>Líder: PR. Adriel </p>
+                <a class="whatsapp-btn" href="https://wa.me/41991351132" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div id="mulheres" class="cell-group">
+          <h3 class="cell-group-title">Células de Mulheres</h3>
+          <div class="cell-grid">
+
+            <article class="cell-card">
+              <img class="cell-photo" src="hope-2.webp">
+              <div class="cell-content">
+                <div class="cell-tag">Hope 2</div>
+                <h3>meninas 20 +</h3>
+                <p class="cell-info">quinta-feira 19h30<br><br>jardim paulista<br>campina grande do sul/PR<br><br>Líder: Karoline</p>
+                <a class="whatsapp-btn" href="https://wa.me/41991932921" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="ágape-2.webp">
+              <div class="cell-content">
+                <div class="cell-tag">Ágape 2</div>
+                <h3>mulheres 20 +</h3>
+                <p class="cell-info">Quinta-feira - 20h<br><br>Bairro: Colônia Maria José<br>Quatro Barras/PR<br><br>Líder: Gislaine</p>
+                <a class="whatsapp-btn" href="https://wa.me/41999614912" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="ágape-3.webp">
+              <div class="cell-content">
+                <div class="cell-tag">Ágape 3</div>
+                <h3>mulheres 20 +</h3>
+                <p class="cell-info">quinta-feira -19h30<br><br>Bairro: Jardim Menino Deus<br>Quatro Barras/PR<br><br>Líder Edicleia</p>
+                <a class="whatsapp-btn" href="https://wa.me/41998830098" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="ágape-1.webp">
+              <div class="cell-content">
+                <div class="cell-tag">Ágape 1</div>
+                <h3>mulheres 30 +</h3>
+                <p class="cell-info">quinta-feira - 20h<br><br>Bairro: Colônia Maria José <br>Quatro Barras/PR<br><br>Líder: Loide</p>
+                <a class="whatsapp-btn" href="https://wa.me/41998510701" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div id="homens" class="cell-group">
+          <h3 class="cell-group-title">Células de Homens</h3>
+          <div class="cell-grid">
+
+            <article class="cell-card">
+              <img class="cell-photo" src="Pescadores.webp" alt="Pescadores">
+              <div class="cell-content">
+                <div class="cell-tag">Pescadores</div>
+                <h3>homens 20 +</h3>
+                <p class="cell-info">quarta-feira - 20h<br><br>Bairro: Jardim Paulista<br>Campina Grande do Sul/PR<br><br>Líder: David</p>
+                <a class="whatsapp-btn" href="https://wa.me/41998207502" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="zaqueu.webp" alt="Zaqueu">
+              <div class="cell-content">
+                <div class="cell-tag">Zaqueu</div>
+                <h3>homens 35 +</h3>
+                <p class="cell-info">sexta-feira - 20h<br><br>Bairro: Canguiri<br>Colombo/PR<br><br>Líder: PR. Osvaldo</p>
+                <a class="whatsapp-btn" href="https://wa.me/41984605086" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+            <article class="cell-card">
+              <img class="cell-photo" src="pescadores2.webp" alt="Pescadores 2">
+              <div class="cell-content">
+                <div class="cell-tag">Pescadores 2</div>
+                <h3>homens 20 +</h3>
+                <p class="cell-info">quinta-feira - 20h<br><br>Bairro: Colônia Maria José <br>Quatro Barras/PR<br><br>Líder: Jean</p>
+                <a class="whatsapp-btn" href="https://wa.me/41999181956" target="_blank" rel="noopener"><span class="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/></svg></span> Saiba mais</a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="igreja">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">Nossa Igreja</div>
+          <h2>Visite nossa igreja</h2>
+        </div>
+        <div style="text-align:center; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+          <a class="whatsapp-btn" href="https://www.google.com/maps?q=Rua+Dom+Orione,+349,+Quatro+Barras,+PR&z=17" target="_blank" rel="noopener" style="font-size:1rem; padding:14px 22px;">
+            📍 Abrir no Google Maps
+          </a>
+
+          <a class="whatsapp-btn" href="https://wa.me/5541984903956" target="_blank" rel="noopener" style="font-size:1rem; padding:14px 22px;">
+            <span class="whatsapp-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.11 17.44c-.29-.14-1.71-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.31-1.44-.85-.76-1.42-1.7-1.59-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49-.17-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.43.02 1.43 1.03 2.81 1.17 3 .14.19 2.02 3.08 4.89 4.32.68.29 1.21.46 1.63.59.68.22 1.29.19 1.78.12.54-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33zM16.03 3C8.83 3 3 8.82 3 16c0 2.82.9 5.43 2.43 7.56L3 29l5.6-2.36A12.9 12.9 0 0 0 16.03 29C23.23 29 29 23.18 29 16S23.23 3 16.03 3zm0 23.4c-2.28 0-4.4-.7-6.16-1.9l-.44-.28-3.32 1.4 1.43-3.23-.29-.47A10.3 10.3 0 0 1 5.73 16c0-5.7 4.64-10.33 10.3-10.33 5.7 0 10.3 4.63 10.3 10.33s-4.6 10.4-10.3 10.4z"/>
+              </svg>
+            </span>
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 IEQ Comaze — Células. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
